@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{DE5BB4B7-519E-1926-8D7D-8D4DE2130C3E}") = "PotatoMan", "Assembly-CSharp.csproj", "{252786D3-D81C-730B-A75D-23D718A2925A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{252786D3-D81C-730B-A75D-23D718A2925A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252786D3-D81C-730B-A75D-23D718A2925A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252786D3-D81C-730B-A75D-23D718A2925A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252786D3-D81C-730B-A75D-23D718A2925A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
