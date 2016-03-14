@@ -1,0 +1,15 @@
+--P 26000 
+--E Enable
+
+-- This is the comment 
+Hello
+Jump
+Left
+Right
+Jump
+Up
+Down
+Enable
+Disable
+-- This is the default speech recognition terminating word 
+Exit
