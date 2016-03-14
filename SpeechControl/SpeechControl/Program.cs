@@ -5,20 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
-namespace Test
+namespace SpeechControl
 {
     class Program
     {
-        public static int port = 0;
-        public static string endWord = "end";
-        public static string fileName = "grammar.txt";
+        public static int port = 26000; //Default
+        public static string ipServer = "192.168.0.255"; //Default
+        public static string endWord = "Exit";  //Default
 
         public static void Main(string[] args)
         {
+            Console.WriteLine("## Starting Speech Recognition##");
+
+            bool flag = true;
+
             try
             {
-                string[] txt = File.ReadAllLines(fileName);
+
+                string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\grammar.txt";
+
+                string[] txt = File.ReadAllLines(path);
                 foreach (string line in txt)
                 {
                     //Extracting port number from user
@@ -26,11 +34,35 @@ namespace Test
                     {
                         var text = line.Split(new char[] { ' ' });
                         port = Convert.ToInt32(text[1]);
-                        Console.WriteLine("!!Specified Port:" + port);
+                        Console.WriteLine("## Specified Port:" + port);
                         continue;
                     }
-                    //End Word to stop recognition 
+                    //Extracting IP address from user
+                    if (line.StartsWith("--I"))
+                    {
+                        var text = line.Split(new char[] { ' ' });
+                        ipServer = text[1];
+                        Console.WriteLine("## IP Address:" + ipServer);
+                        continue;
+                    }
+                    //Enable Speech Recognition 
                     if (line.StartsWith("--E"))
+                    {
+                        var text = line.Split(new char[] { ' ' });
+                        if (text[1].Equals("Enable", StringComparison.OrdinalIgnoreCase))
+                        {
+                            flag = true;
+                            Console.WriteLine("## Speech Recognition: Enabled");
+                            continue;
+                        }
+                        else {
+                            flag = false;
+                            Console.WriteLine("## Speech Recognition: Disabled");
+                            continue;
+                        }
+                    }
+                    //End Word to stop recognition 
+                    if (line.StartsWith("--T"))
                     {
                         var text = line.Split(new char[] { ' ' });
                         Console.WriteLine("!!Default End word changed from \"" + endWord + "\" to \"" + text[1] + "\"");
@@ -39,11 +71,10 @@ namespace Test
                     //Removing empty lines in the text 
                     if (line == string.Empty) continue;
                     //Ignoring the comments in the grammar file
-                    if (line.StartsWith("--")) continue;
+                    if (line.StartsWith("!-")) continue;
                     else
                         Console.WriteLine(line);
                 }
-                Console.ReadKey();
             }
             catch (Exception e)
             {
