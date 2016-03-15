@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Speech.Recognition;
 using System.IO;
-using System.Speech.Synthesis;
 using System.Reflection;
-using System.Net;
-using System.Net.Sockets;
 
 namespace SpeechControl
 {
@@ -38,22 +31,6 @@ namespace SpeechControl
                     string[] txt = File.ReadAllLines(path);
                     foreach (string line in txt)
                     {
-                        //Extracting port number from user
-                        if (line.StartsWith("--P"))
-                        {
-                            var text = line.Split(new char[] { ' ' });
-                            port = Convert.ToInt32(text[1]);
-                            Console.WriteLine("## Specified Port:" + port);
-                            continue;
-                        }
-                        //Extracting IP address from user
-                        if (line.StartsWith("--I"))
-                        {
-                            var text = line.Split(new char[] { ' ' });
-                            ipServer = text[1];
-                            Console.WriteLine("## IP Address:" + ipServer);
-                            continue;
-                        }
                         //Enable Speech Recognition 
                         if (line.StartsWith("--E"))
                         {
