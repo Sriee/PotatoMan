@@ -16,17 +16,13 @@ namespace SpeechControl
     class Program
     {
         //Declaring member variables to be used for the program
-        public static int port = 26000;
+        
         public static string endWord = "Exit";  //Default
-        public static string detectedWord = "#";
-        public static string ipServer = "192.168.0.255"; //Default
-        public static byte[] data = new byte[512];
+        
 
         public static void Main(string[] args)
         {
             Console.WriteLine("## Starting Speech Recognition##");
-
-            bool flag = true;
 
             //Initializing the speech recognition engine
             SpeechRecognitionEngine speechRecognizer = new SpeechRecognitionEngine();
@@ -107,25 +103,6 @@ namespace SpeechControl
                 speechRecognizer.SetInputToDefaultAudioDevice();
                 speechRecognizer.RecognizeAsync(RecognizeMode.Multiple);
 
-                /*************************************************************************************************
-                /UDP Communication 
-                **************************************************************************************************/
-                Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                IPEndPoint iep = new IPEndPoint(IPAddress.Parse(ipServer), port);
-                server.Connect(iep);
-                if (flag == true)
-                {
-                    while (true)
-                    {
-                        if (detectedWord != "#")
-                        {
-                            data = Encoding.ASCII.GetBytes(detectedWord);
-                            Console.WriteLine("Sent word" + detectedWord);
-                            server.SendTo(data, iep);
-                            detectedWord = "#";
-                        }
-                    }
-                }
             }
             catch (Exception e)
             {
@@ -147,15 +124,9 @@ namespace SpeechControl
         /// </summary>
         static void speechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            detectedWord = e.Result.Text;
+            
             Console.WriteLine(detectedWord);
-            if (e.Result.Text == endWord)
-            {
-                Console.WriteLine("## Stoping Recognition, Bye:)");
-                System.Environment.Exit(0);
-            }
-            else
-                detectedWord = "#";
+            
         }//End of speechRecognized
     }//End of class 
 }//End of SpeechControl
