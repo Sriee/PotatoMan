@@ -1,26 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
-using System.Net;
-using System.Text;
-using System.Net.Sockets;
-using System.Threading;
-
+using System.Diagnostics;
 
 public class PlayerControl : MonoBehaviour
 {
-    /*******************************************************************************************
-    * Speech Recognition Variables
-    ********************************************************************************************/
-    Thread controlsInputThread;
-    UdpClient gameClient;
-    public int port = 26000;
-    string strReceiveUDP = "";
-    //string localIP = "";
-    string hostname;
-
-    /******************************************************************************************/
-
+    
     [HideInInspector]
 	public bool facingRight = true;			// For determining which way the player is currently facing.
 	[HideInInspector]
@@ -44,38 +28,22 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-        Application.OpenURL((Application.dataPath) + @"\Plugin\Test.exe");
-        Application.runInBackground = true;
+        Process speechProcess = new Process();
 
-        controlsInputThread = new Thread(new ThreadStart(ReceiveData));
-        controlsInputThread.IsBackground = true;
-        controlsInputThread.Start();
-
-       /* hostname = Dns.GetHostName();
-        IPAddress[] ips = Dns.GetHostAddresses(hostname);
-        if (ips.Length > 0)
-            localIP = ips[0].ToString();*/
-    }//End of Start
-
-    private void ReceiveData()
-    {
-        gameClient = new UdpClient(port);
-        while (true)
+        try
         {
-            try
-            {
-                IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, port);
-                byte[] data = gameClient.Receive(ref anyIP);
-                strReceiveUDP = Encoding.UTF8.GetString(data);
-                Console.WriteLine(strReceiveUDP);
-            }
-            catch (Exception e)
-            {
-                print(e.Message + "@ReceiveData");
-            }
-        }
-    }//End of ReceiveData
+            speechProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+            speechProcess.StartInfo.FileName = "SpeechKeyboard.exe";
+            speechProcess.StartInfo.Arguments = (Application.dataPath) + @"\";
+            speechProcess.Start();
 
+        }
+        catch (System.Exception e)
+        {
+            print(e.Message);
+        }
+
+    }//End of Start
 
     void Awake()
 	{
@@ -91,12 +59,8 @@ public class PlayerControl : MonoBehaviour
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
         // If the jump button is pressed and the player is grounded then the player should jump.
-        /*if(Input.GetButtonDown("Jump") && grounded)
+        if(Input.GetButtonDown("Jump") && grounded)
 			jump = true;
-        */ //Revert Back
-        if (strReceiveUDP.Equals("Jump",StringComparison.OrdinalIgnoreCase) && grounded)
-            jump = true;
-
     }
 
 
@@ -195,9 +159,4 @@ public class PlayerControl : MonoBehaviour
 			return i;
 	}
 
-    void OnDisable()
-    {
-        if (controlsInputThread != null) controlsInputThread.Abort();
-        gameClient.Close();
-    }
 }//End of MonoBehaviour
