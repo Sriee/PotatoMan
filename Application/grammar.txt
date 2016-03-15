@@ -1,0 +1,8 @@
+Jump
+Left
+Right
+Fire
+Bomb
+Move Left
+Move Right
+Exit

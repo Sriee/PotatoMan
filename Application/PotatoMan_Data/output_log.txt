@@ -1,0 +1,39 @@
+Initialize engine version: 5.3.3f1 (910d71450a97)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [igdumdim32.dll 10.18.15.4278]
+    Renderer: Intel(R) HD Graphics 5500
+    Vendor:   Intel
+    VRAM:     2111 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 INTZ=1 NULL=1 RESZ=1 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Studies\UTD\Comet Careers\Companies applied\Dolby\UnityGame\Challenge\Application\PotatoMan_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Studies\UTD\Comet Careers\Companies applied\Dolby\UnityGame\Challenge\Application\PotatoMan_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Studies\UTD\Comet Careers\Companies applied\Dolby\UnityGame\Challenge\Application\PotatoMan_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Studies\UTD\Comet Careers\Companies applied\Dolby\UnityGame\Challenge\Application\PotatoMan_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Studies\UTD\Comet Careers\Companies applied\Dolby\UnityGame\Challenge\Application\PotatoMan_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Studies\UTD\Comet Careers\Companies applied\Dolby\UnityGame\Challenge\Application\PotatoMan_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Studies\UTD\Comet Careers\Companies applied\Dolby\UnityGame\Challenge\Application\PotatoMan_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Studies\UTD\Comet Careers\Companies applied\Dolby\UnityGame\Challenge\Application\PotatoMan_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.066 seconds
+Platform assembly: D:\Studies\UTD\Comet Careers\Companies applied\Dolby\UnityGame\Challenge\Application\PotatoMan_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Studies\UTD\Comet Careers\Companies applied\Dolby\UnityGame\Challenge\Application\PotatoMan_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.669473 ms
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: needs reset, doing it
+FullResetD3DDevice
+ResetD3DDevice
+dev->Reset
+D3Dwindow device not lost anymore
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.986273 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 713.
+Total: 4.704978 ms (FindLiveObjects: 0.051318 ms CreateObjectMapping: 0.050852 ms MarkObjects: 4.588345 ms  DeleteObjects: 0.013529 ms)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 2a78 -> priority: 1 
