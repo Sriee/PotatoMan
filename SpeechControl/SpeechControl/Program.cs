@@ -1,21 +1,23 @@
 ﻿using System;
+using System.Threading;
 using System.Diagnostics;
-using System.Speech.Recognition;
 using System.IO;
+using System.Speech.Recognition;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace SpeechControl
 {
-    class Program
+    static class Program
     {
-        //Declaring member variables to be used for the program
-        
-        public static string endWord = "Exit";  //Default
-        
 
-        public static void Main(string[] args)
+        public static string endWord = "Exit";  //Default
+        public static bool flag = true; //Default - Speech Recognition Enabled 
+
+        static void Main(string[] args)
         {
-            Console.WriteLine("## Starting Speech Recognition##");
+
+            Console.WriteLine("## Starting Speech Recognition...");
 
             //Initializing the speech recognition engine
             SpeechRecognitionEngine speechRecognizer = new SpeechRecognitionEngine();
@@ -43,8 +45,8 @@ namespace SpeechControl
                             }
                             else {
                                 flag = false;
-                                Console.WriteLine("## Speech Recognition: Disabled");
-                                continue;
+                                Console.WriteLine("## Speech Recognition: Disabled, Bye!...");
+                                System.Environment.Exit(0);
                             }
                         }
                         //End Word to stop recognition 
@@ -80,6 +82,12 @@ namespace SpeechControl
                 speechRecognizer.SetInputToDefaultAudioDevice();
                 speechRecognizer.RecognizeAsync(RecognizeMode.Multiple);
 
+
+                Console.WriteLine("## Ready....");
+                while (true)
+                {
+                    Thread.Sleep(10);
+                }
             }
             catch (Exception e)
             {
@@ -94,16 +102,56 @@ namespace SpeechControl
                 if (speechRecognizer != null) speechRecognizer.Dispose();
             }
 
-        }//End of main
+        }//End of Main
 
         /// <summary>
         /// Handler for the speech recognition event
         /// </summary>
         static void speechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            
-            Console.WriteLine(detectedWord);
-            
-        }//End of speechRecognized
-    }//End of class 
-}//End of SpeechControl
+            string detectedWord = "";
+            if (flag == true)
+            {
+                detectedWord = e.Result.Text;
+                Console.WriteLine(detectedWord);
+                if (e.Result.Text == endWord)
+                {
+                    Console.WriteLine("## Stoping Recognition, Bye:)");
+                    System.Environment.Exit(0);
+                }
+                else
+                {
+                    switch (detectedWord)
+                    {
+                        case "Jump":
+                            SendKeys.SendWait(" ");
+                            break;
+                        case "Left":
+                        case "left":
+                            SendKeys.SendWait("A");
+                            break;
+                        case "Right":
+                        case "right":
+                            SendKeys.SendWait("D");
+                            break;
+                        case "Fire":
+                        case "fire":
+                            SendKeys.SendWait("X");
+                            break;
+                        case "Bomb":
+                        case "bomb":
+                            SendKeys.SendWait("Z");
+                            break;
+                        case "Move Left":
+                            for (int i = 0; i < 20; i++) SendKeys.SendWait("A");
+                            break;
+                        case "Move Right":
+                            for (int i = 0; i < 20; i++) SendKeys.SendWait("D");
+                            break;
+                    }//End of switch case
+                }//End of else
+            }
+        }//End of speech Recognized  
+
+    }//End of program
+}//End of namespace
