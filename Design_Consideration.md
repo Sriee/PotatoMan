@@ -4,7 +4,7 @@
 
 The Implementation of my project is as shown in the figure below. 
 
- ![alt Image](https://cloud.githubusercontent.com/assets/8402606/13730742/f7873df2-e925-11e5-9e0e-b8e780ddd026.GIF)
+ ![alt Image](https://cloud.githubusercontent.com/assets/8402606/13778347/3ddfb578-ea83-11e5-8319-5557de96dcdf.jpg)
  
 Game contains two application, first one is the Unity application which runs on top of Unity Game Engine and the other one is a console application.
 
