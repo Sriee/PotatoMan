@@ -1,5 +1,8 @@
 # PotatoMan
-2D Game made with Unity Game Engine. Supports speech controls  
+
+2D Game from Unity with support for speech controls  
+
+![alt Title](https://cloud.githubusercontent.com/assets/8402606/13778438/c92d7020-ea83-11e5-9d53-5953244ff622.png)
 
 ## Getting Started 
 
