@@ -24,7 +24,7 @@
 	- -T End     - Sets End as the terminating word for the recognizer  
 	- !- Comment - Use this to add any comments in the grammar  
 
-###Steps to run the file
+### Steps to run the file
 1. grammar.txt file should be present in the same folder where PotatoMan.exe and 
    SpeechKeyboard.exe. 
 2. Double click PotatoMan.exe to start the game. When the game starts you will 
@@ -36,7 +36,3 @@
 ## Licence 
 
 This project is licensed under the GPL License - see the [LICENCE](../master/LICENSE) file for details
-
-## Acknowledgements 
-
-This is a special project for me. My C# skills were little rusty, so I took this challenging project of integrating speech recognition to Unity Engine. I had spend just 24 hours to complete the entire project setup. 
